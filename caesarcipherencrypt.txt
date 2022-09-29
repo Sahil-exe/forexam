@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+public class CaesarCipherEncryption {
+    public static final String ALPHABETS = "abcdefghijklmnopqrstuvwxyz";
+    
+    public static String encrypt(String message, int shiftkey) {
+        
+        message = message.toLowerCase();
+        String cipherText ="";
+        
+        for(int i =0;i<message.length();i++){
+            int charPosition = ALPHABETS.indexOf(message.charAt(i));
+            int keyVal = (shiftkey  + charPosition)%26;
+            char replaceVal = ALPHABETS.charAt(keyVal);
+            cipherText +=replaceVal;
+        }
+        return cipherText;
+    }
+    
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        String message = new String();
+        System.out.print("Enter the String for Encryption: ");
+        message = sc.next();
+        
+        int key=0;
+        System.out.print("Enter the key: ");
+        key = sc.nextInt();
+        
+        System.out.println("Encrypted message: " + encrypt(message,key));
+    }
+}
